@@ -1,13 +1,20 @@
 class ArticlesController < ApplicationController
-    def show
-        @article =Article.find(params[:id])
+    
+    def index
+    @articles = Article.all
     end
+    
+    def show
+        @article = Article.find(params[:id])
+    end
+    
+    # snippet for brevity
     
     def new
     end
     
     def create
-        @article = Article.new(params.require(:article).permit(:title, :text))
+        @article = Article.new(article.params)
  
         @article.save
         redirect_to @article
